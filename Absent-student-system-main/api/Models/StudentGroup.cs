@@ -7,11 +7,12 @@ namespace api.Models
 {
     public class StudentGroup
     {
-        public string StudentId { get; set; } = string.Empty;
+        public Guid StudentId { get; set; }
         public Guid GroupId { get; set; }
         public Student Student { get; set; }
         public Group Group { get; set; }
-        public StudentGroup(string studentId, Guid groupId)
+
+        public StudentGroup(Guid studentId, Guid groupId)
         {
             StudentId = studentId;
             GroupId = groupId;

@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos;
 using api.Dtos.Faculty;
+using api.Dtos.Student;
 using api.Models;
 
 namespace api.Interfaces
 {
     public interface IStudentRepository
     {
-        Task<bool> StudentExists(string email);
+        Task AddGroups(List<Guid> groups, Guid id);
+        Task<List<GroupDto>> FindGroups(Guid studentId);
+        Task<Student?> FindStudent(string username);
+        Task<User?> FindUser(string username);
+        Task<StudentProfileDto?> GetProfileAsync(string username);
         Task<TokenResponse?> CreateStudentAsync(RegisterStudentDto registerStudentDto);
-        Task<TokenResponse?> LoginStudentAsync(LoginDto loginDto);
-        Task<ProfileDto?> GetProfileAsync(string username);
-        Task<EditProfileDto?> EditProfileAsync(User student, EditProfileDto editProfileDto);
-        Task<List<GroupDto>> FindGroups(string studentId);
-        Task<User?> FindStudent(string username);
-        Task AddGroups(List<Guid> groups, string id);
+        Task<StudentEditProfileDto?> EditProfileAsync(User student, String username, StudentEditProfileDto editProfileDto);
+        
     }
 }
